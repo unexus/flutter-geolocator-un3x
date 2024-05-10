@@ -8,6 +8,8 @@ public enum ErrorCodes {
   permissionDenied,
   permissionRequestInProgress;
 
+  resolutionRequired;
+
   public String toString() {
     switch (this) {
       case activityMissing:
@@ -22,6 +24,8 @@ public enum ErrorCodes {
         return "PERMISSION_DENIED";
       case permissionRequestInProgress:
         return "PERMISSION_REQUEST_IN_PROGRESS";
+        case resolutionRequired:
+            return "RESOLUTION_REQUIRED";
       default:
         throw new IndexOutOfBoundsException();
     }
@@ -41,6 +45,8 @@ public enum ErrorCodes {
         return "User denied permissions to access the device's location.";
       case permissionRequestInProgress:
         return "Already listening for location updates. If you want to restart listening please cancel other subscriptions first";
+        case resolutionRequired:
+            return "Google wants to ask you for activating Gogle Location Accuracy";
       default:
         throw new IndexOutOfBoundsException();
     }
