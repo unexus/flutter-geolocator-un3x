@@ -1,4 +1,4 @@
-name: geolocator
+name: geolocator_u
 description: Geolocation plugin for Flutter. This plugin provides a cross-platform (iOS, Android) API for generic location (GPS etc.) functions.
 repository: https://github.com/baseflow/flutter-geolocator/tree/main/geolocator
 issue_tracker: https://github.com/baseflow/flutter-geolocator/issues?q=is%3Aissue+is%3Aopen
@@ -12,37 +12,37 @@ flutter:
   plugin:
     platforms:
       android:
-        default_package: geolocator_android
+        default_package: geolocator_android_u
       ios:
-        default_package: geolocator_apple
+        default_package: geolocator_apple_u
       macos:
-        default_package: geolocator_apple
+        default_package: geolocator_apple_u
       web:
-        default_package: geolocator_web
+        default_package: geolocator_web_u
       windows:
-        default_package: geolocator_windows
+        default_package: geolocator_windows_u
 
 dependencies:
   flutter:
     sdk: flutter
 
-  geolocator_platform_interface:
+  geolocator_platform_interface_u:
     git:
       url: https://github.com/unexus/flutter-geolocator-un3x.git
       path: geolocator_platform_interface
-  geolocator_android:
+  geolocator_android_u:
     git:
       url: https://github.com/unexus/flutter-geolocator-un3x.git
       path: geolocator_android
-  geolocator_apple:
+  geolocator_apple_u:
     git:
       url: https://github.com/unexus/flutter-geolocator-un3x.git
       path: geolocator_apple
-  geolocator_web:
+  geolocator_web_u:
     git:
       url: https://github.com/unexus/flutter-geolocator-un3x.git
       path: geolocator_web
-  geolocator_windows:
+  geolocator_windows_u:
     git:
       url: https://github.com/unexus/flutter-geolocator-un3x.git
       path: geolocator_windows
