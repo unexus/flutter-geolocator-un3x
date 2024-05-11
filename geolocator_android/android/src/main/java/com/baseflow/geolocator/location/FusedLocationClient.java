@@ -243,7 +243,8 @@ class FusedLocationClient implements LocationClient {
                   try {
                     // Show the dialog by calling startResolutionForResult(), and check the
                     // result in onActivityResult().
-                    rae.startResolutionForResult(activity, activityRequestCode);
+                    //rae.startResolutionForResult(activity, activityRequestCode);
+                      errorCallback.onError(ErrorCodes.resolutionRequired);
                   } catch (IntentSender.SendIntentException sie) {
                     errorCallback.onError(ErrorCodes.locationServicesDisabled);
                   }
