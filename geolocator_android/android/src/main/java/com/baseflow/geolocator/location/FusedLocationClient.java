@@ -40,6 +40,11 @@ class FusedLocationClient implements LocationClient {
     private final NmeaClient nmeaClient;
     private final int activityRequestCode;
 
+    private static class ResolutionFlag {
+        public boolean hasShownResolution = false;
+    }
+    private ResolutionFlag resolutionFlag = new ResolutionFlag();
+
 
     @Nullable
     private final LocationOptions locationOptions;
@@ -235,7 +240,6 @@ class FusedLocationClient implements LocationClient {
                         locationSettingsResponse -> requestPositionUpdates(this.locationOptions))
                 .addOnFailureListener(
                         e -> {
-                            boolean hasShownResolution = false;
                             if (e instanceof ResolvableApiException) {
                                 // When we don't have an activity return an error code explaining the
                                 // location services are not enabled
@@ -247,8 +251,8 @@ class FusedLocationClient implements LocationClient {
                                 ResolvableApiException rae = (ResolvableApiException) e;
                                 int statusCode = rae.getStatusCode();
                                 if (statusCode == LocationSettingsStatusCodes.RESOLUTION_REQUIRED) {
-                                    if (!hasShownResolution) {
-                                        hasShownResolution = true;
+                                    if (!resolutionFlag.hasShownResolution) {
+                                        resolutionFlag.hasShownResolution = true;
                                         try {
                                             // Show the dialog by calling startResolutionForResult(), and check the
                                             // result in onActivityResult().
