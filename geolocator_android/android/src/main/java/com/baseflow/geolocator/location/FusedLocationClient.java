@@ -43,7 +43,7 @@ class FusedLocationClient implements LocationClient {
     private static class ResolutionFlag {
         public boolean hasShownResolution = false;
     }
-    private ResolutionFlag resolutionFlag = new ResolutionFlag();
+    private final ResolutionFlag;
 
 
     @Nullable
@@ -60,6 +60,7 @@ class FusedLocationClient implements LocationClient {
         this.locationOptions = locationOptions;
         this.nmeaClient = new NmeaClient(context, locationOptions);
         this.activityRequestCode = generateActivityRequestCode();
+        this.resolutionFlag = new ResolutionFlag();
 
         locationCallback =
                 new LocationCallback() {
@@ -251,8 +252,8 @@ class FusedLocationClient implements LocationClient {
                                 ResolvableApiException rae = (ResolvableApiException) e;
                                 int statusCode = rae.getStatusCode();
                                 if (statusCode == LocationSettingsStatusCodes.RESOLUTION_REQUIRED) {
-                                    if (!resolutionFlag.hasShownResolution) {
-                                        resolutionFlag.hasShownResolution = true;
+                                    if (!this.resolutionFlag.hasShownResolution) {
+                                        this.resolutionFlag.hasShownResolution = true;
                                         try {
                                             // Show the dialog by calling startResolutionForResult(), and check the
                                             // result in onActivityResult().
