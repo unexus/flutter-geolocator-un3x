@@ -43,7 +43,7 @@ class FusedLocationClient implements LocationClient {
     private static class ResolutionFlag {
         public boolean hasShownResolution = false;
     }
-    private final ResolutionFlag;
+    private final ResolutionFlag resolutionFlag;
 
 
     @Nullable
