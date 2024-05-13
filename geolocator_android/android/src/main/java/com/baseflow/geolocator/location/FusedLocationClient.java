@@ -224,7 +224,6 @@ class FusedLocationClient implements LocationClient {
         this.positionChangedCallback = positionChangedCallback;
         this.errorCallback = errorCallback;
 
-        boolean hasShownResolution = false;
 
         LocationRequest locationRequest = buildLocationRequest(this.locationOptions);
         LocationSettingsRequest settingsRequest = buildLocationSettingsRequest(locationRequest);
@@ -236,6 +235,7 @@ class FusedLocationClient implements LocationClient {
                         locationSettingsResponse -> requestPositionUpdates(this.locationOptions))
                 .addOnFailureListener(
                         e -> {
+                            boolean hasShownResolution = false;
                             if (e instanceof ResolvableApiException) {
                                 // When we don't have an activity return an error code explaining the
                                 // location services are not enabled
