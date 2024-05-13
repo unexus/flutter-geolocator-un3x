@@ -29,22 +29,27 @@ dependencies:
     git:
       url: https://github.com/unexus/flutter-geolocator-un3x.git
       path: geolocator_platform_interface
+      ref: spr-googlelocaccuracyfix
   geolocator_android:
     git:
       url: https://github.com/unexus/flutter-geolocator-un3x.git
       path: geolocator_android
+      ref: spr-googlelocaccuracyfix
   geolocator_apple:
     git:
       url: https://github.com/unexus/flutter-geolocator-un3x.git
       path: geolocator_apple
+      ref: spr-googlelocaccuracyfix
   geolocator_web:
     git:
       url: https://github.com/unexus/flutter-geolocator-un3x.git
       path: geolocator_web
+      ref: spr-googlelocaccuracyfix
   geolocator_windows:
     git:
       url: https://github.com/unexus/flutter-geolocator-un3x.git
       path: geolocator_windows
+      ref: spr-googlelocaccuracyfix
 
 dev_dependencies:
   flutter_test:
