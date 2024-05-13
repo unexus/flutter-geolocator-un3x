@@ -40,7 +40,7 @@ class FusedLocationClient implements LocationClient {
     private final NmeaClient nmeaClient;
     private final int activityRequestCode;
 
-    private bool hasShownResolution = false;
+    private boolean hasShownResolution = false;
 
     @Nullable
     private final LocationOptions locationOptions;
