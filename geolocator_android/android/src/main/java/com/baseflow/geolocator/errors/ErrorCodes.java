@@ -6,8 +6,7 @@ public enum ErrorCodes {
   locationServicesDisabled,
   permissionDefinitionsNotFound,
   permissionDenied,
-  permissionRequestInProgress;
-
+  permissionRequestInProgress,
   resolutionRequired;
 
   public String toString() {
