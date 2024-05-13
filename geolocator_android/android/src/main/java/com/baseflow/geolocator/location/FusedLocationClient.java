@@ -246,12 +246,15 @@ class FusedLocationClient implements LocationClient {
                                 ResolvableApiException rae = (ResolvableApiException) e;
                                 int statusCode = rae.getStatusCode();
                                 if (statusCode == LocationSettingsStatusCodes.RESOLUTION_REQUIRED) {
-
-                                    // Show the dialog by calling startResolutionForResult(), and check the
-                                    // result in onActivityResult().
                                     if (!hasShownResolution) {
                                         hasShownResolution = true;
-                                        rae.startResolutionForResult(activity, activityRequestCode);
+                                        try {
+                                            // Show the dialog by calling startResolutionForResult(), and check the
+                                            // result in onActivityResult().
+                                            rae.startResolutionForResult(activity, activityRequestCode);
+                                        } catch (IntentSender.SendIntentException sie) {
+                                            errorCallback.onError(ErrorCodes.locationServicesDisabled);
+                                        }
                                     } else {
                                         errorCallback.onError(ErrorCodes.resolutionRequired);
                                     }
