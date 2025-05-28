@@ -172,9 +172,6 @@ class FusedLocationClient implements LocationClient {
 
                 try {
                     LocationSettingsResponse lsr = response.getResult();
-                    if (true) {
-                        throw new RuntimeException(new Exception("test"));
-                    }
                     if (lsr != null) {
                         LocationSettingsStates settingsStates = lsr.getLocationSettingsStates();
                         boolean isGpsUsable = settingsStates != null && settingsStates.isGpsUsable();
