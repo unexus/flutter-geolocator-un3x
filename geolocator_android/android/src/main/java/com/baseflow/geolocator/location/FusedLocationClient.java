@@ -167,19 +167,29 @@ class FusedLocationClient implements LocationClient {
             (response) -> {
               if (!response.isSuccessful()) {
                 listener.onLocationServiceError(ErrorCodes.locationServicesDisabled);
+                return;
               }
 
-              LocationSettingsResponse lsr = response.getResult();
-              if (lsr != null) {
-                LocationSettingsStates settingsStates = lsr.getLocationSettingsStates();
-                boolean isGpsUsable = settingsStates != null && settingsStates.isGpsUsable();
-                boolean isNetworkUsable =
-                    settingsStates != null && settingsStates.isNetworkLocationUsable();
-                listener.onLocationServiceResult(isGpsUsable || isNetworkUsable);
-              } else {
-                listener.onLocationServiceError(ErrorCodes.locationServicesDisabled);
+              try {
+                LocationSettingsResponse lsr = response.getResult();
+                if (true) {
+                   throw new RuntimeException(new Exception("test"));
+                }
+                if (lsr != null) {
+                   LocationSettingsStates settingsStates = lsr.getLocationSettingsStates();
+                   boolean isGpsUsable = settingsStates != null && settingsStates.isGpsUsable();
+                   boolean isNetworkUsable =
+                   settingsStates != null && settingsStates.isNetworkLocationUsable();
+                   listener.onLocationServiceResult(isGpsUsable || isNetworkUsable);
+                 } else {
+                   listener.onLocationServiceError(ErrorCodes.locationServicesDisabled);
+                 }
+              } catch (Exception e) {
+                    listener.onLocationServiceError(ErrorCodes.locationServicesDisabled);
               }
-            });
+          .addOnFailureListener((e) -> {
+              listener.onLocationServiceError(ErrorCodes.locationServicesFailed);
+          });
   }
 
   @SuppressLint("MissingPermission")
